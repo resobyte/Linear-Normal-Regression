@@ -277,8 +277,10 @@ namespace bastan
            
         }
 
-        /*id3 tree algoritması*/
-
+    public void merhaba()
+        {
+            ;
+        }
     
     }
 }
