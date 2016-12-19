@@ -17,15 +17,11 @@ namespace bastan
         public string kelime;
         public int sayi;
     }
-    public class sayi_tut
-    {
-        public int sayi;
-    }
+    
 
     public partial class Form1 : Form
     {
         List<karsilastir> liste = new List<karsilastir>();
-        List<sayi_tut> txt_sayilar = new List<sayi_tut>();
        
         int say=1;
         public Form1()
@@ -83,12 +79,7 @@ namespace bastan
                     var degerler = satir.Split(','); // satırdaki verileri virgüle göre ayır
                   
                     /*iç for*/
-                    sayi_tut tut = new sayi_tut();
-                    if(IsNumeric(degerler[j]))
-                    {
-                        tut.sayi = Convert.ToInt32(degerler[j]);
-                        txt_sayilar.Add(tut);
-                    }
+                    
                     veriler[i, j-1] = degerler[j];
                     
                 }
@@ -129,15 +120,7 @@ namespace bastan
                             {
                                 ata.kelime = veriler[i,j];
                             
-                            etiket:
-                                foreach (var sayi_kontrol in txt_sayilar) /*dosyadaki int değerler ile çakışma olmaması için yeni class ile kontrol ediliyor.*/
-                                {
-                                    if (sayi_kontrol.sayi == say)
-                                    {
-                                        say++;
-                                        goto etiket;
-                                    }
-                                }
+                            
                                 ata.sayi = say;
                                 sayi_ata = say;
                                 liste.Add(ata);
@@ -149,15 +132,7 @@ namespace bastan
                         {
                         
                             ata.kelime = veriler[i,j];
-                            etiket:
-                            foreach (var sayi_kontrol in txt_sayilar)/*dosyadaki int değerler ile çakışma olmaması için yeni class ile kontrol ediliyor.*/
-                            {
-                                if (sayi_kontrol.sayi == say)
-                                { 
-                                    say++;
-                                    goto etiket;
-                                }
-                            }
+                            
                             ata.sayi = say;
                             sayi_ata = say;
                             liste.Add(ata);
@@ -269,18 +244,80 @@ namespace bastan
 
         private void Btn_Veriduzelt_Click(object sender, EventArgs e)
         {
-            /*
-              var iki = oku();
-              yaz(veri_duzelt(iki));
-              */
+            
             var iki = veri_duzelt(oku());
+           // yaz(iki);
+            lineer(iki);
+
            
         }
 
-    public void merhaba()
+    private void lineer(string [,] veriler)
         {
-            ;
+            int satir = SatirSayisiBul() - 1;
+            int sutun = SutunSayisiBul() - 1;
+            float a=0;
+            float b=0;
+            int [] Xsatir = new int[satir];
+            int Ytoplam = 0;
+            MessageBox.Show(satir.ToString());
+            MessageBox.Show(sutun.ToString());
+            int z=0;
+            for(int i=0;i<satir;i++)
+            {
+                for (int j=0;j<sutun;j++)
+                {
+                    if(j==sutun-1)
+                    {
+                        Ytoplam += Convert.ToInt32(veriler[i, j]);
+                    }
+                    else
+                    {
+                        z += Convert.ToInt32(veriler[i, j]);
+                    }
+                }
+                Xsatir[i] = z;
+                z = 0;
+
+            }
+            int xy=0;
+            int x2=0;
+
+
+            int xtop = 0;
+
+        for(int i=0;i<satir;i++)
+        {
+            xy += Convert.ToInt32(Xsatir[i]) * Convert.ToInt32(veriler[i, sutun - 1]);
+            x2 += Convert.ToInt32(Xsatir[i]*Xsatir[i]) ;
+            xtop+=Xsatir[i];
         }
+
+        float yort = (float)(Ytoplam / satir);
+        float oort = (float)(xtop / satir);
+
+        b = (float)(xy - (satir * (oort) * yort)) / (x2 - (satir*(oort * oort)));
+        a = (float)(yort - (b * oort));
+
+        double denemey = (double) (a + (b * Xsatir[0]));
+        /*silinecek*/
+        string dosya_yolu = @"D:\ab.txt";
+        
+
+
+        FileStream k = new FileStream(dosya_yolu, FileMode.OpenOrCreate, FileAccess.Write);
+
+        StreamWriter ya = new StreamWriter(k);
+       
+            ya.Write(" a: "+a+" b: "+b+" y :"+denemey+"xsatr : "+Xsatir[0]);
+        
+
+        ya.Flush();
+
+        ya.Close();
+        k.Close();
+    }
+
     
     }
 }

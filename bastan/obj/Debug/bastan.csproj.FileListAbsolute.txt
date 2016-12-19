@@ -28,3 +28,9 @@ C:\Users\Resobyte\Desktop\Yaz-Lab-1-2\bastan\obj\Debug\bastan.csproj.GenerateRes
 C:\Users\ilker\Desktop\ilker\Linear-Normal-Regression\bastan\bin\Debug\bastan.exe.config
 C:\Users\ilker\Desktop\ilker\Linear-Normal-Regression\bastan\obj\Debug\bastan.exe
 C:\Users\ilker\Desktop\ilker\Linear-Normal-Regression\bastan\obj\Debug\bastan.pdb
+C:\Users\ilker\Desktop\ilker\Linear-Normal-Regression\bastan\bin\Debug\bastan.exe
+C:\Users\ilker\Desktop\ilker\Linear-Normal-Regression\bastan\bin\Debug\bastan.pdb
+C:\Users\ilker\Desktop\ilker\Linear-Normal-Regression\bastan\obj\Debug\bastan.csprojResolveAssemblyReference.cache
+C:\Users\ilker\Desktop\ilker\Linear-Normal-Regression\bastan\obj\Debug\bastan.karsilastir.resources
+C:\Users\ilker\Desktop\ilker\Linear-Normal-Regression\bastan\obj\Debug\bastan.Properties.Resources.resources
+C:\Users\ilker\Desktop\ilker\Linear-Normal-Regression\bastan\obj\Debug\bastan.csproj.GenerateResource.Cache
