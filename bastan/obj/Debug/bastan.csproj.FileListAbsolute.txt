@@ -58,3 +58,9 @@ C:\Users\Resobyte\Desktop\Linear-Normal-Regression\Linear-Normal-Regression\bast
 C:\Users\Resobyte\Desktop\resobyte\Linear-Normal-Regression\bastan\bin\Debug\bastan.exe.config
 C:\Users\Resobyte\Desktop\resobyte\Linear-Normal-Regression\bastan\obj\Debug\bastan.exe
 C:\Users\Resobyte\Desktop\resobyte\Linear-Normal-Regression\bastan\obj\Debug\bastan.pdb
+C:\Users\ilker\Desktop\Linear-Normal-Regression\bastan\bin\Debug\bastan.exe
+C:\Users\ilker\Desktop\Linear-Normal-Regression\bastan\bin\Debug\bastan.pdb
+C:\Users\ilker\Desktop\Linear-Normal-Regression\bastan\obj\Debug\bastan.csprojResolveAssemblyReference.cache
+C:\Users\ilker\Desktop\Linear-Normal-Regression\bastan\obj\Debug\bastan.Form1.resources
+C:\Users\ilker\Desktop\Linear-Normal-Regression\bastan\obj\Debug\bastan.Properties.Resources.resources
+C:\Users\ilker\Desktop\Linear-Normal-Regression\bastan\obj\Debug\bastan.csproj.GenerateResource.Cache

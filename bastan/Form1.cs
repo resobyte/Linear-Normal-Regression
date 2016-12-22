@@ -38,6 +38,10 @@ namespace bastan
         float b;
         double[] Y = new double[2000];
         double[] ID = new double[2000];
+        int min = 0;
+        int max = 0;
+        int artis=0;
+        int aralik1,aralik2,aralik3,aralik4,aralik5;
         public Form1()
         {
             InitializeComponent();
@@ -89,7 +93,7 @@ namespace bastan
             // Dosyanın sadece ilk satırının okunup, özellik adlarının ataması (dosyanın ilk satırını atla)
             var ilksatir = dosyaOkuyucu.ReadLine();
             var ozellikler = ilksatir.Split(',');
-
+            int sayac = 1;
             /* NA lar değişecek ve dosyadaki sayı değerleri ile aynı olmayacak*/
             for (int i = 0; i < (satirSayisi - 1); i++) // satırları oku
             {
@@ -100,12 +104,30 @@ namespace bastan
                     var degerler = satir.Split(','); // satırdaki verileri virgüle göre ayır
 
                     /*iç for*/
+                    if(j == sutunSayisi-1)
+                    {
+                        if(Convert.ToInt32(degerler[j]) > max)
+                        {
+                            max = Convert.ToInt32(degerler[j]);
+                            if(sayac==1)
+                            {
+                                min = max;
+                            }
+                        }
+                        sayac++;
+                        if(Convert.ToInt32(degerler[j]) <= min)
+                        {
+                            min = Convert.ToInt32(degerler[j]);
+                        }
+                    }
 
                     veriler[i, j] = degerler[j];
 
                 }
                 /*dış for*/
             }
+            MessageBox.Show(min.ToString());
+            MessageBox.Show(max.ToString());
             return veriler;
             /*fonk bitis*/
 
@@ -551,11 +573,57 @@ namespace bastan
 
             }
         }
+        private void aralik_belirleme()
+        {
+            artis = (max - min) / 5;
+            aralik1 = min + artis;
+            aralik2 = aralik1 + artis;
+            aralik3 = aralik2 + artis;
+            aralik4 = aralik3 + artis;
+            aralik5 = aralik4 + artis;
+        }
 
+        private string[,] araliklara_gore_veri_duzeltme(String[,] veriler,String text)
+        {
+            var satirSayisi = SatirSayisiBul(text);
+            var sutunSayisi = SutunSayisiBul(text);
+            int j=sutunSayisi-1;
+            for (int i = 0; i < (satirSayisi - 1); i++) //satır
+            {
+                if(aralik1 >= Convert.ToInt32(veriler[i,j]) )
+                {
+                    veriler[i, j] = 1.ToString();
+                }
+                else if(aralik2 >= Convert.ToInt32(veriler[i,j]))
+                {
+                    veriler[i, j] = 2.ToString();
+                }
+                else if(aralik3 >= Convert.ToInt32(veriler[i,j]))
+                {
+                    veriler[i, j] = 3.ToString();
+                }
+                else if(aralik4 >= Convert.ToInt32(veriler[i,j]))
+                {
+                    veriler[i, j] = 4.ToString();
+                }
+                else
+                {
+                    veriler[i, j] = 5.ToString();
+                }
+            }
+            
+            
+
+            return veriler;
+        }
         private void Btn_J48_Click(object sender, EventArgs e)
         {
             var dosya = oku(Txb_Dosyayolu2.Text);
-            j48_genel_entropy(dosya, Txb_Dosyayolu2.Text);
+            var duzeltilmis = veri_duzelt(dosya,Txb_Dosyayolu2.Text);
+            aralik_belirleme();
+            var yazilacak=araliklara_gore_veri_duzeltme(duzeltilmis, Txb_Dosyayolu2.Text);
+            yaz(yazilacak, Txb_Dosyayolu2.Text);
+            j48_genel_entropy(yazilacak, Txb_Dosyayolu2.Text);
         }
     }
 }
